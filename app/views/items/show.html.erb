@@ -1,0 +1,13 @@
+<h3>Navigation Links</h3>
+<ul id="nav_links">
+    <li><%= link_to 'Items Index', '/items' %></li>
+    <li><%= link_to 'Retailstore Index', '/retailstores' %></li>
+    <li><%= link_to 'Update Item', "/items/#{@item.id}/edit" %></li>
+    <li><%= link_to "Delete Record Of This #{@item.brand}", "/items/#{@item.id}", method: "delete" %></li>
+</ul>
+
+<h1><%= @item.brand %></h1>
+<ul>
+    <li>"Amount in stock: <%= @item.amount_in_stock %>"</li>
+    <li>"Is it available: <%= @item.availability %>"</li>
+</ul>

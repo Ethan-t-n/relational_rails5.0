@@ -1,0 +1,21 @@
+<h3>Navigation Links</h3>
+<ul id="nav_links">
+    <li><%= link_to 'Items Index', '/items' %></li>
+    <li><%= link_to 'Retailstore Index', '/retailstores' %></li>
+    <li><%= link_to 'New Retailstore', '/retailstores/new' %></li>
+</ul>
+
+<h1>Welcome!</h1>
+
+<% @retailstores.each_with_index do |retailstore, index| %>
+<div id="retailstore-<%= index%>">
+<ul>
+    <li><%= retailstore.name %></li>
+        <ul>
+            <li>Created at: <%= retailstore.created_at %></li>
+            <li><%= link_to "Click Here To Edit This #{retailstore.name} ", "/retailstores/#{retailstore.id}/edit"%></li>
+            <li><%= link_to "Click Here To Delete This #{retailstore.name} ", "/retailstores/#{retailstore.id}", method: :delete %></li>
+        </ul>
+    </ul>
+</div>
+<% end %>

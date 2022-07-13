@@ -1,0 +1,15 @@
+<h3>Navigation Links</h3>
+<ul id="nav_links">
+    <li><%= link_to 'Items Index', '/items' %></li>
+    <li><%= link_to 'Retailstore Index', '/retailstores' %></li>
+</ul>
+
+<%= form_with url: "/items/#{@item.id}", method: :patch, local: true do |form| %>
+    <%= form.label :brand %>
+    <%= form.text_field :brand %>
+    <%= form.label :amount_in_stock %>
+    <%= form.text_field :amount_in_stock %>
+    <%= form.label :availability %>
+    <%= form.select :availability, options_for_select([true, false]) %>
+    <%= form.submit "Update This Item"%>
+<% end %>

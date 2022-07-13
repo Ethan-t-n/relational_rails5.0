@@ -1,0 +1,16 @@
+<h3>Navigation Links</h3>
+<ul id="nav_links">
+    <li><%= link_to 'Items Index', '/items' %></li>
+    <li><%= link_to 'Retailstore Index', '/retailstores' %></li>
+    <li><%= link_to 'This Retailstores Items Index', "/retailstores/#{@retailstore.id}/items" %></li>
+    <li><%= link_to "Edit #{@retailstore.name}", "/retailstores/#{@retailstore.id}/edit" %></li>
+    <li><%= link_to "Delete Record Of This #{@retailstore.name}", "/retailstores/#{@retailstore.id}", method: "delete" %></li>
+
+</ul>
+
+<h1><%= @retailstore.name %></h1>
+<br/>
+    <p>location: <%= @retailstore.location %></p>
+    <p>total_items_in_stock: <%= @retailstore.total_items_in_stock %></p>
+    <p>open_for_day?: <%= @retailstore.open_for_day %></p>
+    <p>This retailstore has <%= @retailstore.item_count %> items</p>

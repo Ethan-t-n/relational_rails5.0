@@ -1,0 +1,23 @@
+<h3>Navigation Links</h3>
+<ul id="nav_links">
+    <li><%= link_to 'Items Index', '/items' %></li>
+    <li><%= link_to 'Retailstore Index', '/retailstores' %></li>
+    <li><%= link_to 'Create Item', "/retailstores/#{@retailstore.id}/items/new"%></li>
+    <li><%= link_to 'Sort Alphabetically', "/retailstores/#{@retailstore.id}/items?sort=activated" %></li>
+</ul>
+
+<%= form_with url: "/retailstores/#{@retailstore.id}/items?number=", method: :get, local: true, skip_enforcing_utf8: true do |form| %>
+    <%= form.label :number, "Enter Number:" %>
+    <%= form.number_field :number %>
+    <%= form.submit "Only return records whose amount is more than X", name: nil %>
+<% end %>
+
+<% @items.each do |item| %>
+    <h3><%= item.brand %></h3>
+    <ul>
+        <li><%= link_to "Click Here To Edit This #{item.brand} ", "/items/#{item.id}/edit" %></li>
+        <li><%= link_to "Click Here To Delete This #{item.brand} ", "/items/#{item.id}", method: :delete %>
+        <li>"Amount in stock: <%= item.amount_in_stock %>"</li>
+        <li>"Is it available: <%= item.availability %>"</li>
+    </ul>
+<% end %>

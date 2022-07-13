@@ -1,0 +1,17 @@
+<h3>Navigation Links</h3>
+<ul id="nav_links">
+    <li><%= link_to 'Items Index', '/items' %></li>
+    <li><%= link_to 'Retailstore Index', '/retailstores' %></li>
+</ul>
+
+<%= form_with url: "/retailstores/#{@retailstore.id}", method: :patch, local: true do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+    <%= form.label :amount_in_stock %>
+    <%= form.text_field :amount_in_stock %>
+    <%= form.label :open_for_day %>
+    <%= form.select :open_for_day, options_for_select([true, false]) %>
+    <%= form.submit "Edit #{@retailstore.name}"%>
+<% end %>

@@ -1,0 +1,16 @@
+<h3>Navigation Links</h3>
+<ul id="nav_links">
+    <li><%= link_to 'Items Index', '/items' %></li>
+    <li><%= link_to 'Retailstore Index', '/retailstores' %></li>
+</ul>
+
+<% @items.each do |item| %>
+    <% if item.availability%>
+        <h1><%= item.brand %></h1>
+        <ul>
+            <li><%= link_to "Click Here To Edit This #{item.brand} ", "/items/#{item.id}/edit" %>
+            <li><%= link_to "Click Here To Delete This #{item.brand} ", "/items/#{item.id}", method: :delete %>
+            <li>amount of <%= item.brand %> in stock is <%= item.amount_in_stock %></li>
+            <li>is this item available? <%= item.availability %></li>
+    <% end %>
+<% end %>
