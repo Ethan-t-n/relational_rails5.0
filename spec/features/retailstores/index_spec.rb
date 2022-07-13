@@ -36,20 +36,21 @@ RSpec.describe "items index page", type: :feature do
             open_for_day: false)
 
         visit '/retailstores'
-
-        within "#retailstores-0" do
+        # expect(page.text.index#{@retailstores_4.name}).to be < page.text.index#{@retailstores_4.name})
+        # save_and_open_page
+        within "#retailstore-0" do
             expect(page).to have_content("Dillards")
         end
 
-        within "#retailstores-1" do
+        within "#retailstore-1" do
             expect(page).to have_content("Costco")
         end
 
-        within "#retailstores-2" do
+        within "#retailstore-2" do
             expect(page).to have_content("Walmart")
         end
 
-        within "#retailstores-3" do
+        within "#retailstore-3" do
             expect(page).to have_content("Target")
         end
     end
@@ -74,19 +75,19 @@ RSpec.describe "items index page", type: :feature do
 
         visit '/retailstores'
 
-        within "#retailstores-0" do
+        within "#retailstore-0" do
             expect(page).to have_content(retailstores_1.created_at)
         end
 
-        within "#retailstores-1" do
+        within "#retailstore-1" do
             expect(page).to have_content(retailstores_2.created_at)
         end
 
-        within "#retailstores-2" do
+        within "#retailstore-2" do
             expect(page).to have_content(retailstores_3.created_at)
         end
 
-        within "#retailstores-3" do
+        within "#retailstore-3" do
             expect(page).to have_content(retailstores_4.created_at)
         end
     end
@@ -282,7 +283,7 @@ RSpec.describe "items index page", type: :feature do
 
         visit '/retailstores'
 
-        click_link "Click Here To Delete This Store"
+        click_link "Click Here To Delete This #{retailstores_1.name}"
 
         expect(current_path).to eq('/retailstores')
         expect(page).to_not have_content(retailstores_1.name)

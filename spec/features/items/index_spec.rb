@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "items index page", type: :feature do
-    xit "can see all the items retailstores parts names, cost of part, and if needs a mechanic" do
+    xit "can see all the items retailstores parts names, amount_in_stock, available" do
         #User story 15 overrides user story 3, thus this test being skipped
 
         target = Retailstore.create!(name: "Target",

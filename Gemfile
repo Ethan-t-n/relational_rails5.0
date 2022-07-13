@@ -41,7 +41,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy' #save_and_open_page
   gem 'faker'
-  gem 'shoulda-matchers', '~> 4.0'
+  gem 'shoulda-matchers', '~> 5.0'
 
 end
 

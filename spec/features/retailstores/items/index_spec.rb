@@ -8,12 +8,10 @@ RSpec.describe 'retailstores items index', type: :feature do
                             open_for_day: true)
         nike = retailstores_1.items.create!(brand: "nike",
                                             amount_in_stock: 0,
-                                            availability: false,
-                                            retailstore_id: 1)
+                                            availability: false)
         synergy = retailstores_1.items.create!(brand: "Synergy",
                                                 amount_in_stock: 42,
-                                                availability: true,
-                                                retailstore_id: 1)
+                                                availability: true)
 
         visit "/retailstores/#{retailstores_1.id}/items"
 
@@ -22,12 +20,12 @@ RSpec.describe 'retailstores items index', type: :feature do
     end
 
     it 'shows the items attributes for the specific retailstores' do
-        retailstores_1 = Retailstore.create!(id:1,
+        retailstores_1 = Retailstore.create!(
                             name: "Target",
                             location: "Lone Tree",
                             total_items_in_stock: 4352,
                             open_for_day: true)
-        retailstores_2 = Retailstore.create!(id:2,
+        retailstores_2 = Retailstore.create!(
                             name: "Walmart",
                             location: "Highlands Ranch",
                             total_items_in_stock: 0,
@@ -35,20 +33,16 @@ RSpec.describe 'retailstores items index', type: :feature do
 
         nike = retailstores_1.items.create!(brand: "nike",
                                             amount_in_stock: 0,
-                                            availability: false,
-                                            retailstore_id: 1)
+                                            availability: false)
         synergy = retailstores_1.items.create!(brand: "Synergy",
                                                 amount_in_stock: 42,
-                                                availability: true,
-                                                retailstore_id: 1)
+                                                availability: true)
         kirkland = retailstores_2.items.create!(brand: "Kirkland",
                                         amount_in_stock: 72,
-                                        availability: true,
-                                        retailstore_id: 1)
+                                        availability: true)
         vega = retailstores_2.items.create!(brand: "Vega",
                                        amount_in_stock: 18,
-                                       availability: true,
-                                       retailstore_id: 1)
+                                       availability: true)
 
         visit "/retailstores/#{retailstores_1.id}/items"
 
@@ -58,8 +52,8 @@ RSpec.describe 'retailstores items index', type: :feature do
         expect(page).to have_content(synergy.brand)
         expect(page).to have_content(synergy.amount_in_stock)
         expect(page).to have_content(synergy.availability)
-        expect(page).to_not have_content(wheels.brand)
-        expect(page).to_not have_content(tires.brand)
+        expect(page).to_not have_content(kirkland.brand)
+        expect(page).to_not have_content(vega.brand)
     end
 
     it 'displays a link at the top of the page that says Items Index' do
@@ -137,7 +131,7 @@ RSpec.describe 'retailstores items index', type: :feature do
     end
 
     it 'can click on the link and go to the Retailstore Index' do
-        retailstores_1 = Retailstore.create!(id:1,
+        retailstores_1 = Retailstore.create!(
                             name: "Target",
                             location: "Lone Tree",
                             total_items_in_stock: 4352,
@@ -158,12 +152,12 @@ RSpec.describe 'retailstores items index', type: :feature do
     end
 
     it 'displays a link at the top of the page that says Sort Alphabetically' do
-        retailstores_1 = Retailstore.create!(id:1,
+        retailstores_1 = Retailstore.create!(
                             name: "Target",
                             location: "Lone Tree",
                             total_items_in_stock: 4352,
                             open_for_day: true)
-        retailstores_2 = Retailstore.create!(id:2,
+        retailstores_2 = Retailstore.create!(
                             name: "Walmart",
                             location: "Highlands Ranch",
                             total_items_in_stock: 0,
@@ -240,7 +234,7 @@ RSpec.describe 'retailstores items index', type: :feature do
         expect(current_path).to eq("/items/#{item_2.id}/edit")
     end
 
-    it 'has a form section that says Only return records whose cost of part is more than X' do
+    it 'has a form section that says Only return records whose is more than X' do
         retailstores_1 = Retailstore.create!(name: "Target",
                             location: "Lone Tree",
                             total_items_in_stock: 4352,
@@ -261,7 +255,7 @@ RSpec.describe 'retailstores items index', type: :feature do
 
         visit "/retailstores/#{retailstores_1.id}/items"
 
-        expect(page).to have_button("Only return records whose cost of part is more than X")
+        expect(page).to have_button("Only return records whose more than X")
     end
 
     it 'brings visitor back to the current index page with only the records that meet that threshold shown' do
@@ -287,7 +281,7 @@ RSpec.describe 'retailstores items index', type: :feature do
 
         fill_in('number', with: "40")
 
-        click_on('Only return records whose cost of part is more than X')
+        click_on('Only return records whose is more than X')
 
         expect(current_path).to eq("/retailstores/#{retailstores_1.id}/items")
         expect(page).to have_content(item_2.brand)

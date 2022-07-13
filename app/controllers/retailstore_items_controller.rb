@@ -1,4 +1,4 @@
-class RetailstoresItemsController < ApplicationController
+class RetailstoreItemsController < ApplicationController
     def index
         @retailstore = Retailstore.find(params[:retailstore_id])
         if params[:sort] == "activated"
@@ -17,9 +17,9 @@ class RetailstoresItemsController < ApplicationController
     end
 
     def create
-        item = Item.create(item_params)
-        retailstore = Retailstore.find(params[:retailstore_id])
-        redirect_to "/retailstores/#{retailstore.id}/items"
+        @retailstore = Retailstore.find(params[:retailstore_id])
+        @retailstore.items.create(item_params)
+        redirect_to "/retailstores/#{@retailstore.id}/items"
     end
 
     private
