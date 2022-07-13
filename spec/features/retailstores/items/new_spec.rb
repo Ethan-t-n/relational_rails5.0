@@ -30,15 +30,15 @@ RSpec.describe 'can create a new item for a specific retailstores' do
         visit "/retailstores/#{retailstores_1.id}/items/new"
 
         fill_in('brand', with: "nike")
-        fill_in('amount in stock', with: 40)
-        fill_in('available', with: true)
+        fill_in('Amount in stock', with: 40)
+        select(true, from: 'Availability')
 
         click_button("Create Item")
 
         expect(current_path).to eq("/retailstores/#{retailstores_1.id}/items")
         expect(page).to have_content("nike")
         expect(page).to have_content("40")
-        expect(page).to have_content("true")
+
     end
 
     it 'displays a link at the top of the page that says Items Index' do

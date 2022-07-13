@@ -2,52 +2,42 @@ require 'rails_helper'
 
 RSpec.describe "items show page", type: :feature do
     it 'shows the child(item) matching the id in the path including its attributes' do
-        retailstores_1 = Retailstore.create!(id: 1,
-            name: "Target",
-            location: "Lone Tree",
-            total_items_in_stock: 4352,
-            open_for_day: true)
+      target = Retailstore.create!(name: "Target",
+                          location: "Lone Tree",
+                          total_items_in_stock: 4352,
+                          open_for_day: true)
 
-        item_1 = Item.create!(brand: "nike",
-                            amount_in_stock: 0,
-                            availability: false,
-                            retailstore_id: 1
-                            )
-        item_2 = Item.create!(brand: "Synergy",
-                            amount_in_stock: 42,
-                            availability: true,
-                            retailstore_id: 1
-                            )
+      nike = target.items.create!(brand: "nike",
+                             amount_in_stock: 0,
+                             availability: false)
+      synergy = target.items.create!(brand: "Synergy",
+                             amount_in_stock: 42,
+                             availability: true)
 
 
-        visit "/items/#{item_1.id}"
+        visit "/items/#{nike.id}"
 
-        expect(page).to have_content(item_1.brand)
-        expect(page).to have_content("amount in stock of part: #{item_1.amount_in_stock}")
-        expect(page).to have_content("Does it need a mechanic: #{item_1.availability}")
-        expect(page).to_not have_content(item_2.brand)
+        expect(page).to have_content(nike.brand)
+        expect(page).to have_content("Amount in stock: #{nike.amount_in_stock}")
+        expect(page).to have_content("Is it available: #{nike.availability}")
+        expect(page).to_not have_content(synergy.brand)
     end
 
     it 'displays a link at the top of the page that says Items Index' do
-        retailstores_1 = Retailstore.create!(id: 1,
-            name: "Target",
-            location: "Lone Tree",
-            total_items_in_stock: 4352,
-            open_for_day: true)
+      target = Retailstore.create!(name: "Target",
+                          location: "Lone Tree",
+                          total_items_in_stock: 4352,
+                          open_for_day: true)
 
-        item_1 = Item.create!(brand: "nike",
-                            amount_in_stock: 0,
-                            availability: false,
-                            retailstore_id: 1
-                            )
-        item_2 = Item.create!(brand: "Synergy",
-                            amount_in_stock: 42,
-                            availability: true,
-                            retailstore_id: 1
-                            )
+      nike = target.items.create!(brand: "nike",
+                             amount_in_stock: 0,
+                             availability: false)
+      synergy = target.items.create!(brand: "Synergy",
+                             amount_in_stock: 42,
+                             availability: true)
 
 
-        visit "/items/#{item_1.id}"
+        visit "/items/#{nike.id}"
 
         within "#nav_links" do
             expect(page).to have_content("Items Index")
@@ -55,25 +45,18 @@ RSpec.describe "items show page", type: :feature do
     end
 
     it 'can click on the link and go to the Items Index' do
-        retailstores_1 = Retailstore.create!(id: 1,
-                            name: "Target",
-                            location: "Lone Tree",
-                            total_items_in_stock: 4352,
-                            open_for_day: true)
+      target = Retailstore.create!(name: "Target",
+                          location: "Lone Tree",
+                          total_items_in_stock: 4352,
+                          open_for_day: true)
 
-        item_1 = Item.create!(brand: "nike",
-                                    amount_in_stock: 0,
-                                    availability: false,
-                                    retailstore_id: 1
-                                    )
-        item_2 = Item.create!(brand: "Synergy",
-                                    amount_in_stock: 42,
-                                    availability: true,
-                                    retailstore_id: 1
-                                    )
-
-
-        visit "/items/#{item_1.id}"
+      nike = target.items.create!(brand: "nike",
+                             amount_in_stock: 0,
+                             availability: false)
+      synergy = target.items.create!(brand: "Synergy",
+                             amount_in_stock: 42,
+                             availability: true)
+        visit "/items/#{nike.id}"
 
         click_link 'Items Index'
 
@@ -82,25 +65,19 @@ RSpec.describe "items show page", type: :feature do
 
 
     it 'displays a link at the top of the page that says Retailstore Index' do
-        retailstores_1 = Retailstore.create!(id: 1,
-            name: "Target",
-            location: "Lone Tree",
-            total_items_in_stock: 4352,
-            open_for_day: true)
+      target = Retailstore.create!(name: "Target",
+                          location: "Lone Tree",
+                          total_items_in_stock: 4352,
+                          open_for_day: true)
 
-        item_1 = Item.create!(brand: "nike",
-                            amount_in_stock: 0,
-                            availability: false,
-                            retailstore_id: 1
-                            )
-        item_2 = Item.create!(brand: "Synergy",
-                            amount_in_stock: 42,
-                            availability: true,
-                            retailstore_id: 1
-                            )
+      nike = target.items.create!(brand: "nike",
+                             amount_in_stock: 0,
+                             availability: false)
+      synergy = target.items.create!(brand: "Synergy",
+                             amount_in_stock: 42,
+                             availability: true)
 
-
-        visit "/items/#{item_1.id}"
+        visit "/items/#{nike.id}"
 
         within "#nav_links" do
             expect(page).to have_content("Retailstore Index")
@@ -108,25 +85,19 @@ RSpec.describe "items show page", type: :feature do
     end
 
     it 'can click on the link and go to the Retailstore Index' do
-        retailstores_1 = Retailstore.create!(id: 1,
-                            name: "Target",
-                            location: "Lone Tree",
-                            total_items_in_stock: 4352,
-                            open_for_day: true)
+      target = Retailstore.create!(name: "Target",
+                          location: "Lone Tree",
+                          total_items_in_stock: 4352,
+                          open_for_day: true)
 
-        item_1 = Item.create!(brand: "nike",
-                                    amount_in_stock: 0,
-                                    availability: false,
-                                    retailstore_id: 1
-                                    )
-        item_2 = Item.create!(brand: "Synergy",
-                                    amount_in_stock: 42,
-                                    availability: true,
-                                    retailstore_id: 1
-                                    )
+      nike = target.items.create!(brand: "nike",
+                             amount_in_stock: 0,
+                             availability: false)
+      synergy = target.items.create!(brand: "Synergy",
+                             amount_in_stock: 42,
+                             availability: true)
 
-
-        visit "/items/#{item_1.id}"
+        visit "/items/#{nike.id}"
 
         click_link 'Retailstore Index'
 
@@ -135,21 +106,19 @@ RSpec.describe "items show page", type: :feature do
 
     it 'displays a link on the page that says Update Item and will redirect to /items/:item_id/edit' do
 
-        retailstores_1 = Retailstore.create!(name: "Target",
-                            location: "Lone Tree",
-                            total_items_in_stock: 4352,
-                            open_for_day: true)
+      target = Retailstore.create!(name: "Target",
+                          location: "Lone Tree",
+                          total_items_in_stock: 4352,
+                          open_for_day: true)
 
-        item_1 = retailstores_1.items.create!(brand: "nike",
-                                           amount_in_stock: 0,
-                                           availability: false,
-                                          retailstore_id: 1)
-        item_2 = retailstores_1.items.create!(brand: "Synergy",
-                                           amount_in_stock: 42,
-                                           availability: true,
-                                           retailstore_id: 1)
+      nike = target.items.create!(brand: "nike",
+                             amount_in_stock: 0,
+                             availability: false)
+      synergy = target.items.create!(brand: "Synergy",
+                             amount_in_stock: 42,
+                             availability: true)
 
-        visit "/items/#{item_1.id}"
+        visit "/items/#{nike.id}"
 
         within "#nav_links" do
             expect(page).to have_link("Update Item")
@@ -157,51 +126,47 @@ RSpec.describe "items show page", type: :feature do
 
         click_link 'Update Item'
 
-        expect(current_path).to eq("/items/#{item_1.id}/edit")
+        expect(current_path).to eq("/items/#{nike.id}/edit")
     end
 
     it 'has a link to delete the item' do
 
-        retailstores_1 = Retailstore.create!(name: "Target",
-                            location: "Lone Tree",
-                            total_items_in_stock: 4352,
-                            open_for_day: true)
+      target = Retailstore.create!(name: "Target",
+                          location: "Lone Tree",
+                          total_items_in_stock: 4352,
+                          open_for_day: true)
 
-        item_1 = retailstores_1.items.create!(brand: "nike",
-                                           amount_in_stock: 0,
-                                           availability: false,
-                                           retailstore_id: 1)
-        item_2 = retailstores_1.items.create!(brand: "Synergy",
-                                           amount_in_stock: 42,
-                                           availability: true,
-                                           retailstore_id: 1)
+      nike = target.items.create!(brand: "nike",
+                             amount_in_stock: 0,
+                             availability: false)
+      synergy = target.items.create!(brand: "Synergy",
+                             amount_in_stock: 42,
+                             availability: true)
 
-        visit "/items/#{item_1.id}"
+        visit "/items/#{nike.id}"
 
         within "#nav_links" do
-            expect(page).to have_link("Delete Record Of This #{item_1.brand}")
+            expect(page).to have_link("Delete Record Of This #{nike.brand}")
         end
     end
 
     it 'has a link to delete the item' do
 
-        retailstores_1 = Retailstore.create!(name: "Target",
-                            location: "Lone Tree",
-                            total_items_in_stock: 4352,
-                            open_for_day: true)
+      target = Retailstore.create!(name: "Target",
+                          location: "Lone Tree",
+                          total_items_in_stock: 4352,
+                          open_for_day: true)
 
-        item_1 = retailstores_1.items.create!(brand: "nike",
-                                           amount_in_stock: 0,
-                                           availability: false,
-                                           retailstore_id: 1)
-        item_2 = retailstores_1.items.create!(brand: "Synergy",
-                                           amount_in_stock: 42,
-                                           availability: true,
-                                           retailstore_id: 1)
+      nike = target.items.create!(brand: "nike",
+                             amount_in_stock: 0,
+                             availability: false)
+      synergy = target.items.create!(brand: "Synergy",
+                             amount_in_stock: 42,
+                             availability: true)
 
-        visit "/items/#{item_1.id}"
+        visit "/items/#{nike.id}"
 
-        click_on "Delete Record Of This #{item_1.brand}"
+        click_on "Delete Record Of This #{nike.brand}"
 
         expect(current_path).to eq('/items')
         expect(page).to_not have_content("nike")

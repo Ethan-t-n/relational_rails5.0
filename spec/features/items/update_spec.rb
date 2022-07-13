@@ -17,9 +17,9 @@ RSpec.describe "items update page", type: :feature do
 
         visit "/items/#{item_1.id}/edit"
 
-        fill_in('Retailstore part name', with: "nike")
-        fill_in('amount in stock of part', with: 40)
-        fill_in('Need mechanic', with: true)
+        fill_in('brand', with: "nike")
+        fill_in('Amount in stock', with: 40)
+        select(true, from: 'Availability')
 
         click_button("Update This Item")
 
