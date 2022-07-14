@@ -3,10 +3,10 @@ class RetailstoreItemsController < ApplicationController
         @retailstore = Retailstore.find(params[:retailstore_id])
         if params[:sort] == "activated"
             @items = @retailstore.items.order('brand')
-        elsif params[:number]
-            threshold_input = params[:number]
-            integer = threshold_input.to_i
-            @items = @retailstore.items.where('amount_in_stock > ?', integer)
+        elsif params[:minimum]
+            # threshold_input = params[:minimum]
+            # integer = threshold_input.to_i
+            @items = @retailstore.items.minimum(params[:minimum])
         else
             @items = @retailstore.items
         end

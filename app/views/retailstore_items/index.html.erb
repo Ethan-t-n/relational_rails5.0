@@ -6,10 +6,10 @@
     <li><%= link_to 'Sort Alphabetically', "/retailstores/#{@retailstore.id}/items?sort=activated" %></li>
 </ul>
 
-<%= form_with url: "/retailstores/#{@retailstore.id}/items?number=", method: :get, local: true, skip_enforcing_utf8: true do |form| %>
-    <%= form.label :number, "Enter Number:" %>
-    <%= form.number_field :number %>
-    <%= form.submit "Only return records whose amount is more than X", name: nil %>
+<%= form_with url: "/retailstores/#{@retailstore.id}/items", method: :get, local: true do |form| %>
+    <%= form.label :amount_in_stock, "Enter Number" %>
+    <%= form.text_field :minimum %>
+    <%= form.submit "Only return records whose more than X" %>
 <% end %>
 
 <% @items.each do |item| %>
@@ -21,3 +21,5 @@
         <li>"Is it available: <%= item.availability %>"</li>
     </ul>
 <% end %>
+
+<%# <%= form_with url: "/retailstores/#{@retailstore.id}/items", method: :get, local: true, skip_enforcing_utf8: true do |form| %> %>

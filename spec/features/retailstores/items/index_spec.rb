@@ -279,9 +279,9 @@ RSpec.describe 'retailstores items index', type: :feature do
 
         visit "/retailstores/#{retailstores_1.id}/items"
 
-        fill_in('number', with: "40")
+        fill_in('minimum', with: 40)
 
-        click_on('Only return records whose is more than X')
+        click_on('Only return records whose more than X')
 
         expect(current_path).to eq("/retailstores/#{retailstores_1.id}/items")
         expect(page).to have_content(item_2.brand)

@@ -13,4 +13,8 @@ class Retailstore < ApplicationRecord
     def self.sort_created_at
         order(created_at: :desc)
     end
+
+    def minimum
+      
+    end
 end
